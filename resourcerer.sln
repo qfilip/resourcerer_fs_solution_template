@@ -19,6 +19,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Resourcerer.Utilities", "sr
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Resourcerer.Models", "src\Resourcerer.Models\Resourcerer.Models.fsproj", "{EAE7511C-AE04-4D3D-BB99-D95085279B1E}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Resourcerer.Messaging", "src\Resourcerer.Messaging\Resourcerer.Messaging.fsproj", "{FEA88BDE-F117-410A-AA2F-6914475C6EB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{EAE7511C-AE04-4D3D-BB99-D95085279B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAE7511C-AE04-4D3D-BB99-D95085279B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAE7511C-AE04-4D3D-BB99-D95085279B1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEA88BDE-F117-410A-AA2F-6914475C6EB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEA88BDE-F117-410A-AA2F-6914475C6EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEA88BDE-F117-410A-AA2F-6914475C6EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEA88BDE-F117-410A-AA2F-6914475C6EB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 		{A53CF0CA-E3FE-4291-8EDC-76F9488E001B} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{D8E8FB51-2F79-473C-97A8-EBB24D2DADE2} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{EAE7511C-AE04-4D3D-BB99-D95085279B1E} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{FEA88BDE-F117-410A-AA2F-6914475C6EB3} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ADDAA621-E698-4AA2-8366-4C0E0ECC387A}
