@@ -13,6 +13,7 @@
     <ProjectReference Include="..\Resourcerer.DataAccess\Resourcerer.DataAccess.csproj" />
     <ProjectReference Include="..\Resourcerer.Identity\Resourcerer.Identity.fsproj" />
     <ProjectReference Include="..\Resourcerer.Logic\Resourcerer.Logic.fsproj" />
+    <ProjectReference Include="..\Resourcerer.Messaging\Resourcerer.Messaging.fsproj" />
     <ProjectReference Include="..\Resourcerer.Models\Resourcerer.Models.fsproj" />
   </ItemGroup>
 

@@ -8,6 +8,11 @@
   <ItemGroup>
     <Compile Include="MailboxProcessors\Abstractions.fs" />
     <Compile Include="MailboxProcessors\Types.fs" />
+    <Compile Include="DependencyInjection.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Resourcerer.Utilities\Resourcerer.Utilities.fsproj" />
   </ItemGroup>
 
 </Project>

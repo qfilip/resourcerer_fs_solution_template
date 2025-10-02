@@ -1,5 +1,7 @@
 namespace Resourcerer.Api
 #nowarn "20"
+open System.Reflection
+
 open Resourcerer.Api.HttpMiddleware
 
 open System
@@ -29,6 +31,7 @@ module Program =
 
         let authEnabled = Resourcerer.Identity.DependencyInjection.register builder
         Resourcerer.DataAccess.DependencyInjection.Register builder
+        Resourcerer.Messaging.DependencyInjection.register builder.Services builder.Configuration (Assembly.GetExecutingAssembly())
 
         let app = builder.Build()
 
