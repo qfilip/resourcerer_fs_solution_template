@@ -5,7 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="HttpMiddleware.fs" />
     <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Resourcerer.DataAccess\Resourcerer.DataAccess.csproj" />
+    <ProjectReference Include="..\Resourcerer.Identity\Resourcerer.Identity.fsproj" />
+    <ProjectReference Include="..\Resourcerer.Logic\Resourcerer.Logic.fsproj" />
+    <ProjectReference Include="..\Resourcerer.Models\Resourcerer.Models.fsproj" />
   </ItemGroup>
 
 </Project>

@@ -9,14 +9,13 @@ namespace Resourcerer.DataAccess;
 
 public static class DependencyInjection
 {
-    public static void RegisterServices(WebApplicationBuilder builder)
+    public static void Register(WebApplicationBuilder builder)
     {
         var dbPath = Path.Combine(builder.Environment.WebRootPath, "database.db3");
         var prefix = "Datasource=";
 
         builder.Services.AddDbContext<AppDbContext>(cfg =>
             cfg.UseSqlite($"{prefix}{dbPath}"));
-
 
         // pass identity data from jwt to DBContext
         builder.Services.AddTransient(x =>
@@ -25,7 +24,7 @@ public static class DependencyInjection
             if (service == null)
                 throw new InvalidOperationException($"{typeof(IAppIdentityService<AppIdentity>)} not found");
 
-            return service.Get();
+            return service.Identity;
         });
     }
 }

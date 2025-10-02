@@ -19,8 +19,7 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Resourcerer.Identity\Resourcerer.Identity.csproj" />
-		<ProjectReference Include="..\Resourcerer.Utilities\Resourcerer.Utilities.csproj" />
+		<ProjectReference Include="..\Resourcerer.Identity\Resourcerer.Identity.fsproj" />
 	</ItemGroup>
 
 </Project>

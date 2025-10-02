@@ -1,5 +1,7 @@
 namespace Resourcerer.Api
 #nowarn "20"
+open Resourcerer.Api.HttpMiddleware
+
 open System
 open System.Collections.Generic
 open System.IO
@@ -19,17 +21,25 @@ module Program =
 
     [<EntryPoint>]
     let main args =
-
         let builder = WebApplication.CreateBuilder(args)
 
-        builder.Services.AddControllers()
+        builder.Services.AddCors(fun b -> b.AddDefaultPolicy(
+            fun o -> 
+                o.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin() |> ignore) |> ignore) |> ignore
+
+        let authEnabled = Resourcerer.Identity.DependencyInjection.register builder
+        Resourcerer.DataAccess.DependencyInjection.Register builder
 
         let app = builder.Build()
 
         app.UseHttpsRedirection()
 
-        app.UseAuthorization()
-        app.MapControllers()
+        if authEnabled then
+            app.UseAuthentication()
+            app.UseAuthorization() |> ignore
+        else ()
+        
+        app.UseMiddleware<HttpErrorMiddleware>()
 
         app.Run()
 
