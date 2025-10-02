@@ -5,9 +5,9 @@ using Resourcerer.DataAccess.Entities;
 
 namespace Resourcerer.DataAccess.Configurations;
 
-internal sealed class FooConfiguration : IEntityTypeConfiguration<Foo>
+internal sealed class FooConfiguration : IEntityTypeConfiguration<FooRow>
 {
-    public void Configure(EntityTypeBuilder<Foo> builder)
+    public void Configure(EntityTypeBuilder<FooRow> builder)
     {
         AppDbContext.ConfigureEntity(builder, (e) =>
         {

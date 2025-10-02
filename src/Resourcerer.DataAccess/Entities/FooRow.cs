@@ -3,7 +3,7 @@ using Resourcerer.DataAccess.Enums;
 using Resourcerer.DataAccess.Records;
 
 namespace Resourcerer.DataAccess.Entities;
-public class Foo : IId<Guid>, IAuditedEntity<Audit>, ISoftDeletable
+public class FooRow : IId<Guid>, IAuditedEntity<Audit>, ISoftDeletable
 {
     public string? Text { get; set; }
 

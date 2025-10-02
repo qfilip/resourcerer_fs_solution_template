@@ -18,7 +18,7 @@ public partial class AppDbContext : DbContext
         _identity = identity;
     }
 
-	public virtual DbSet<Foo> Examples { get; set; }
+	public virtual DbSet<FooRow> Foos { get; set; }
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {

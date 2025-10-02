@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Resourcerer.DataAccess\Resourcerer.DataAccess.csproj" />
     <ProjectReference Include="..\Resourcerer.Utilities\Resourcerer.Utilities.fsproj" />
   </ItemGroup>
 

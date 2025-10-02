@@ -5,6 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Endpoints\Functions.fs" />
+    <Compile Include="Endpoints\VersionMapping.fs" />
+    <Compile Include="Endpoints\V1\Foos\Create.fs" />
     <Compile Include="HttpMiddleware.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
@@ -15,6 +18,10 @@
     <ProjectReference Include="..\Resourcerer.Logic\Resourcerer.Logic.fsproj" />
     <ProjectReference Include="..\Resourcerer.Messaging\Resourcerer.Messaging.fsproj" />
     <ProjectReference Include="..\Resourcerer.Models\Resourcerer.Models.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>

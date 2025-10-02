@@ -3,28 +3,25 @@
 open System
 open Resourcerer.Models.Abstractions
 open Resourcerer.Models.Domain.Foos
-
-type Data = {
-    Text: string
-}
+open Resourcerer.DataAccess.Entities
 
 type FooDto = {
     Id: Guid
-    Data: Data
-}
-with interface IEntityDto<Data> with
-       member this.Id = this.Id
-       member this.Data = this.Data
-
-type CreateRequest = {
     Text: string
 }
-with interface IEntityRequest<Foo> with
+with
+    static member FromRow (x: FooRow) =
+        { Id = x.Id; Text = x.Text }
+
+type CreateFooRequest = {
+    Text: string
+}
+with interface IRequest<Foo> with
         member this.Validate () = tryCreate this.Text
 
-type UpdateRequest = {
+type UpdateFooRequest = {
     Id: Guid
     Text: string
 }
-with interface IEntityRequest<Foo> with
+with interface IRequest<Foo> with
         member this.Validate () = tryCreate this.Text

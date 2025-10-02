@@ -1,5 +1,7 @@
 namespace Resourcerer.Api
 #nowarn "20"
+open Resourcerer.Api.Endpoints
+
 open System.Reflection
 
 open Resourcerer.Api.HttpMiddleware
@@ -32,10 +34,14 @@ module Program =
         let authEnabled = Resourcerer.Identity.DependencyInjection.register builder
         Resourcerer.DataAccess.DependencyInjection.Register builder
         Resourcerer.Messaging.DependencyInjection.register builder.Services builder.Configuration (Assembly.GetExecutingAssembly())
+        Resourcerer.Logic.DependencyInjection.register builder.Services
 
         let app = builder.Build()
 
         app.UseHttpsRedirection()
+
+        VersionMapping.findAllEndpointVersions ()
+        |> VersionMapping.mapEndpoints app
 
         if authEnabled then
             app.UseAuthentication()

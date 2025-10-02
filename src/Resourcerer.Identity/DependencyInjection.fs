@@ -1,6 +1,7 @@
 ﻿module Resourcerer.Identity.DependencyInjection
 
 #nowarn "20"
+open System
 open System.Text
 open Microsoft.AspNetCore.Builder
 open Microsoft.IdentityModel.Tokens
@@ -12,12 +13,11 @@ open Resourcerer.Identity.Services
 open Microsoft.AspNetCore.Authentication.JwtBearer
 
 let register (builder: WebApplicationBuilder) =
-    builder.Services.AddScoped<IAppIdentityService<AppIdentity>, AppIdentityService>()
     let section = loadSection builder.Configuration "Auth"
     
     let authEnabled = load<bool> section "Enabled"
     match authEnabled with
-    | false -> false
+    | false -> ()
     | true ->
         builder.Services.AddScoped<AppJwtBearerEventService>(fun sp ->
             let identityService = sp.GetRequiredService<IAppIdentityService<AppIdentity>>()
@@ -52,6 +52,11 @@ let register (builder: WebApplicationBuilder) =
         builder.Services.AddAuthorization(fun conf ->
             conf.AddPolicy("jwt_policy", fun b ->
                 b.RequireAuthenticatedUser().AddAuthenticationSchemes(jwtScheme) |> ignore) |> ignore
-        )
+        ) |> ignore
 
-        true
+    builder.Services.AddScoped<IAppIdentityService<AppIdentity>, AppIdentityService>(fun _ ->
+        let systemIdentity: AppIdentity = { Id = Guid.Empty; Name = "system"; Email = "sys@notmail.org" }
+        AppIdentityService(authEnabled, systemIdentity)
+    )
+
+    authEnabled
