@@ -1,13 +1,12 @@
 ﻿namespace Resourcerer.Messaging.MailboxProcessors.Types
 
-open Resourcerer.Messaging.MailboxProcessors.Abstractions
+type VoidProcessorMessage<'a> = 'a * ('a -> Async<unit>)
+type ReplyProcessorMessage<'a, 'b> = 'a * ('a -> Async<'b>) * AsyncReplyChannel<'b>
 
-type ReplyProcessorMessage<'a, 'b> = 'a * AsyncReplyChannel<'b>
-
-type AsyncVoidProcessor<'a>(asyncHandler: 'a -> Async<unit>) =
-    let agent = MailboxProcessor<'a>.Start(fun mailbox ->
+type AsyncVoidProcessor<'a>() =
+    let agent = MailboxProcessor<VoidProcessorMessage<'a>>.Start(fun mailbox ->
         let rec loop () = async {
-            let! message = mailbox.Receive()
+            let! message, asyncHandler = mailbox.Receive()
             do! asyncHandler message
             
             do! loop ()
@@ -15,13 +14,13 @@ type AsyncVoidProcessor<'a>(asyncHandler: 'a -> Async<unit>) =
 
         loop ()
     )
-    interface IAsyncVoidProcessor<'a> with
-        member _.Post(x) = agent.Post x
+    
+    member _.Post x asyncHandler = agent.Post (x, asyncHandler)
 
-type AsyncReplyProcessor<'a, 'b>(asyncHandler: 'a -> Async<'b>) =
+type AsyncReplyProcessor<'a, 'b>() =
     let agent = MailboxProcessor<ReplyProcessorMessage<'a, 'b>>.Start(fun mailbox ->
         let rec loop () = async {
-            let! message, rc = mailbox.Receive()
+            let! message, asyncHandler, rc = mailbox.Receive()
             let! reply = asyncHandler message
             rc.Reply(reply)
             
@@ -30,6 +29,6 @@ type AsyncReplyProcessor<'a, 'b>(asyncHandler: 'a -> Async<'b>) =
 
         loop ()
     )
-    interface IAsyncReplyProcessor<'a, 'b> with
-        member _.Post(x) = agent.PostAndAsyncReply(fun rc -> x, rc)
+    
+    member _.Post x asyncHandler = agent.PostAndAsyncReply(fun rc -> x, asyncHandler, rc)
 

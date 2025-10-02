@@ -1,5 +1,7 @@
 ﻿module Resourcerer.Utilities.Common
 
+let inline private notNull value = not (obj.ReferenceEquals(value, null))
+
 module ResultExt =
     let mapResultList (xs: Result<'a, 'b> list): Result<'a list, 'b list> =
         let folder (acc: Result<'a list, 'b list>) (current: Result<'a, 'b>) =
@@ -27,6 +29,11 @@ module ResultExt =
     }
 
 module OptionExt =
+    let ofNullable x =
+        match notNull x with
+        | true -> Some x
+        | false -> None
+
     let mapOrDefault x mapper =
         match mapper with
         | Some f -> f x

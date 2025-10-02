@@ -1,14 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Services\Messaging\V1\DeleteFooAsyncVoidProcessor.fs" />
+    <Compile Include="Services\Messaging\V1\UpdateFooAsyncReplyProcessor.fs" />
     <Compile Include="Endpoints\Functions.fs" />
     <Compile Include="Endpoints\VersionMapping.fs" />
-    <Compile Include="Endpoints\V1\Foos\Create.fs" />
+    <Compile Include="Endpoints\V1\Foos\GetFoosEndpoint.fs" />
+    <Compile Include="Endpoints\V1\Foos\UpdateFooEndpoint.fs" />
+    <Compile Include="Endpoints\V1\Foos\CreateFooEndpoint.fs" />
+    <Compile Include="Endpoints\V1\Foos\DeleteFooHandler.fs" />
     <Compile Include="HttpMiddleware.fs" />
+    <Compile Include="DependencyInjection.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
@@ -18,10 +24,19 @@
     <ProjectReference Include="..\Resourcerer.Logic\Resourcerer.Logic.fsproj" />
     <ProjectReference Include="..\Resourcerer.Messaging\Resourcerer.Messaging.fsproj" />
     <ProjectReference Include="..\Resourcerer.Models\Resourcerer.Models.fsproj" />
+    <ProjectReference Include="..\Resourcerer.Utilities\Resourcerer.Utilities.fsproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="http\app.http" />
     <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

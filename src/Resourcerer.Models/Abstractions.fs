@@ -2,6 +2,6 @@
 
 type IDto = interface end
 
-type IRequest<'a> =
+type IRequest<'a, 'b> =
     inherit IDto
-    abstract member Validate: unit -> Result<'a, string list>
+    abstract member Validate: unit -> Result<'b, string list>

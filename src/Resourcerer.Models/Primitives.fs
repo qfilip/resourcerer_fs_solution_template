@@ -1,5 +1,16 @@
 ﻿module Resourcerer.Models.Primitives
 
+open System
+open Resourcerer.Models.Abstractions
+
+type Row<'a> = { Id: Guid; Data: 'a }
+
+type ValidatedRequest<'a> = {
+    Data: 'a
+}
+with interface IRequest<'a, 'a> with
+        member this.Validate () = Ok (this.Data)
+
 type Min2String = Min2String of string
 with
     static member tryFrom (x: string) =

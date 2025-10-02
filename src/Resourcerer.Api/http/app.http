@@ -1,0 +1,25 @@
+@api = http://localhost:5000/v1.0
+@foos = {{api}}/foos
+
+GET {{foos}}
+
+###
+
+PUT {{foos}}
+Content-Type: application/json
+{
+  "text": "my first fooo"
+}
+
+###
+
+PATCH {{foos}}
+Content-Type: application/json
+{
+  "id": "9B995E9C-6BCC-4F41-B642-4FB1DB81DEF6",
+  "text": "updated"
+}
+
+###
+
+Delete {{foos}}/42a309c4-5446-447a-bc4c-7e6eff6fe52d

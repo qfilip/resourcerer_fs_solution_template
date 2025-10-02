@@ -4,16 +4,15 @@ open System
 open Microsoft.AspNetCore.Http
 open Resourcerer.Models.Dtos.V1
 open Resourcerer.Logic.V1.Foos
- open Resourcerer.Api.Endpoints.Functions
+open Resourcerer.Api.Endpoints.Functions
 
-type Create() =
+type CreateFooEndpoint() =
     let handler =
         Func<CreateFooRequest, CreateHandler, Async<IResult>>(
             fun 
                 ([<FromBody>] request: CreateFooRequest)
-                ([<FromService>] handler: CreateHandler) -> async {
-                return Results.Ok()
-            }
+                ([<FromService>] handler: CreateHandler) ->
+                pipe request handler None
         )
 
     interface IEndpoint with

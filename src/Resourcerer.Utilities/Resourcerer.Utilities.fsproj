@@ -7,9 +7,9 @@
 
   <ItemGroup>
     <Compile Include="Reflection.fs" />
+    <Compile Include="Common.fs" />
     <Compile Include="Configuration.fs" />
     <Compile Include="Crypto.fs" />
-    <Compile Include="Common.fs" />
   </ItemGroup>
 
   <ItemGroup>
