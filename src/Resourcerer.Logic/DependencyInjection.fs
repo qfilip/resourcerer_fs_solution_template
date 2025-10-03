@@ -21,8 +21,7 @@ let private addRepositories (services: IServiceCollection) (assembly: Assembly) 
     let repositoryType = typeof<IRepository>
     let repositories = scanRepositories repositoryType assembly
     
-    services.AddScoped<IRowRepository, RowRepository>() |> ignore
-    //repositories |> Array.iter (fun (abs, impl) -> services.AddScoped(abs, impl) |> ignore)
+    repositories |> Array.iter (fun (abs, impl) -> services.AddScoped(abs, impl) |> ignore)
 
 let register (services: IServiceCollection) =
     let assembly = Assembly.GetExecutingAssembly()

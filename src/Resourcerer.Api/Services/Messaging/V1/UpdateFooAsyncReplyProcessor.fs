@@ -17,7 +17,7 @@ type UpdateFooAsyncReplyProcessor(scopeFactory: IServiceScopeFactory) =
         member _.Post (x: Row<Foo>) = async {
             let scope = scopeFactory.CreateScope()
             let handler = 
-                scope.ServiceProvider.GetRequiredService<UpdateHandler>()
+                scope.ServiceProvider.GetRequiredService<V1UpdateHandler>()
                 :> IAsyncHandler<Row<Foo>, FooDto>
             
             return! processor.Post x handler.Handle

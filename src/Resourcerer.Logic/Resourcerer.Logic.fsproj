@@ -9,10 +9,10 @@
     <Compile Include="Types.fs" />
     <Compile Include="Abstractions.fs" />
     <Compile Include="Repositories.fs" />
-    <Compile Include="V1\Foos\GetHandler.fs" />
-    <Compile Include="V1\Foos\CreateHandler.fs" />
-    <Compile Include="V1\Foos\UpdateHandler.fs" />
-    <Compile Include="V1\Foos\DeleteHandler.fs" />
+    <Compile Include="V1\Foos\V1QueryFoosHandler.fs" />
+    <Compile Include="V1\Foos\V1CreateHandler.fs" />
+    <Compile Include="V1\Foos\V1UpdateHandler.fs" />
+    <Compile Include="V1\Foos\V1DeleteHandler.fs" />
     <Compile Include="DependencyInjection.fs" />
   </ItemGroup>
 

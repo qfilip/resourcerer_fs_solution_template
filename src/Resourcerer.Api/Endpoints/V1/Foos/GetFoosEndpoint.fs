@@ -7,9 +7,9 @@ open Resourcerer.Api.Endpoints.Functions
 
 type GetFoosEndpoint() =
     let handler =
-        Func<GetHandler, Async<IResult>>(
+        Func<V1QueryHandler, Async<IResult>>(
             fun 
-                ([<FromService>] handler: GetHandler) ->
+                ([<FromService>] handler: V1QueryHandler) ->
                 pipeEmpty handler None
         )
 

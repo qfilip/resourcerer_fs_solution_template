@@ -16,10 +16,10 @@ Content-Type: application/json
 PATCH {{foos}}
 Content-Type: application/json
 {
-  "id": "9B995E9C-6BCC-4F41-B642-4FB1DB81DEF6",
+  "id": "e266ff12-1ba9-4e09-91c2-ad600b168bfd",
   "text": "updated"
 }
 
 ###
 
-Delete {{foos}}/42a309c4-5446-447a-bc4c-7e6eff6fe52d
+Delete {{foos}}/e266ff12-1ba9-4e09-91c2-ad600b168bfd

@@ -3,6 +3,7 @@
 open System
 open Resourcerer.DataAccess.Abstractions
 open Resourcerer.Logic.Types
+open System.Linq.Expressions
 
 type IAsyncHandler<'a, 'b> =
     abstract member Handle: request: 'a -> Async<Result<'b, AppError>>
@@ -13,7 +14,8 @@ type IAsyncVoidHandler<'a> =
 type IRepository = interface end
 
 type IRowRepository =
-    abstract member Add<'a when 'a :> IId<Guid> and 'a : not struct> : row: 'a -> unit
+    inherit IRepository
+    abstract member Add<'a when 'a :> IId<Guid> and 'a : not struct> : row: 'a -> 'a
     abstract member Query<'a when 'a :> IId<Guid>and 'a : not struct> : selector: ('a -> bool) -> Async<'a array>
-    abstract member Find<'a when 'a :> IId<Guid>and 'a : not struct> : selector: ('a -> bool) -> Async<'a option>
+    abstract member Find<'a when 'a :> IId<Guid>and 'a : not struct> : selector: (Expression<Func<'a -> bool>>) -> Async<'a option>
     abstract member Commit: unit -> Async<int>

@@ -8,10 +8,10 @@ open Resourcerer.Api.Endpoints.Functions
 
 type CreateFooEndpoint() =
     let handler =
-        Func<CreateFooRequest, CreateHandler, Async<IResult>>(
+        Func<CreateFooRequest, V1CreateHandler, Async<IResult>>(
             fun 
                 ([<FromBody>] request: CreateFooRequest)
-                ([<FromService>] handler: CreateHandler) ->
+                ([<FromService>] handler: V1CreateHandler) ->
                 pipe request handler None
         )
 
