@@ -1,0 +1,29 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "qfilip",
+    "classifications": [ "Web", "Api" ],
+    "identity": "Phq.Web.Api",
+    "name": "Resourcerer F# template",
+    "shortName": "rsrcfs",
+    "sourceName": "Resourcerer",
+    "sources": [
+        {
+            "source": "./",
+            "target": "./",
+            "modifiers": [
+                {
+                    "exclude": [
+                        ".template_config/**",
+                        ".vs/**",
+                        ".git/**"
+                    ]
+                }
+            ]
+        }
+    ],
+    "tags": {
+        "language": "C#, F#",
+        "type": "solution"
+    },
+    "preferNameDirectory": true
+  }
