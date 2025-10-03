@@ -14,7 +14,7 @@ type DeleteFooAsyncVoidProcessor(scopeFactory: IServiceScopeFactory) =
         member _.Post (x: Guid) =
             let scope = scopeFactory.CreateScope()
             let handler = 
-                scope.ServiceProvider.GetRequiredService<V1DeleteHandler>()
+                scope.ServiceProvider.GetRequiredService<V1RemoveHandler>()
                 :> IAsyncVoidHandler<Guid>
             
             processor.Post x handler.Handle

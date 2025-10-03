@@ -12,7 +12,7 @@
     <Compile Include="V1\Foos\V1QueryFoosHandler.fs" />
     <Compile Include="V1\Foos\V1CreateHandler.fs" />
     <Compile Include="V1\Foos\V1UpdateHandler.fs" />
-    <Compile Include="V1\Foos\V1DeleteHandler.fs" />
+    <Compile Include="V1\Foos\V1RemoveHandler.fs" />
     <Compile Include="DependencyInjection.fs" />
   </ItemGroup>
 

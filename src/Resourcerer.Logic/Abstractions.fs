@@ -16,6 +16,6 @@ type IRepository = interface end
 type IRowRepository =
     inherit IRepository
     abstract member Add<'a when 'a :> IId<Guid> and 'a : not struct> : row: 'a -> 'a
-    abstract member Query<'a when 'a :> IId<Guid>and 'a : not struct> : selector: ('a -> bool) -> Async<'a array>
-    abstract member Find<'a when 'a :> IId<Guid>and 'a : not struct> : selector: (Expression<Func<'a -> bool>>) -> Async<'a option>
+    abstract member FindById<'a when 'a :> IId<Guid>and 'a : not struct> : id: Guid -> Async<'a option>
+    abstract member Remove<'a when 'a :> IId<Guid>and 'a : not struct and 'a :> ISoftDeletable> : row: 'a -> unit
     abstract member Commit: unit -> Async<int>
