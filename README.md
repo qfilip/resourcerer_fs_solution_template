@@ -6,7 +6,6 @@ Solution template based on Resourcerer project. It's generating boilerplate solu
 
 From root run:
 ```
-cd ./.template.config
 dotnet new install .
 dotnet new install . --force (if installed already)
 ```
@@ -21,7 +20,6 @@ Run `dotnet new rsrcfs -o "MyPrefix"` to scaffold new solution.
 
 After template is updated, from root run:
 ```
-cd ./.template.config
 dotnet new install .
 dotnet new install . --force (if installed already)
 ```
