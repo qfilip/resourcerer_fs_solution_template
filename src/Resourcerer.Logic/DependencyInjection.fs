@@ -18,7 +18,7 @@ let private addHandlers (services: IServiceCollection) (assembly: Assembly) =
     |> Array.iter (fun (_, impl) -> services.AddScoped(impl) |> ignore)
 
 let private addRepositories (services: IServiceCollection) (assembly: Assembly) =
-    let repositoryType = typeof<IRowRepository>
+    let repositoryType = typeof<IRepository>
     let repositories = scanRepositories repositoryType assembly
     
     services.AddScoped<IRowRepository, RowRepository>() |> ignore

@@ -5,6 +5,7 @@ open Resourcerer.Models.Dtos.V1
 open Resourcerer.DataAccess.Entities
 
 type IGetHandlerRepo =
+    inherit IRepository
     abstract member Query: unit -> Async<FooRow array>
 
 type GetHandlerRepo(rr: IRowRepository) =

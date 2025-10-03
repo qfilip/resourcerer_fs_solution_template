@@ -14,7 +14,6 @@ module Program =
         let builder = WebApplication.CreateBuilder(args)
 
         let authEnabled = DependencyInjection.register builder
-
         let app = builder.Build()
 
         app.UseHttpsRedirection()

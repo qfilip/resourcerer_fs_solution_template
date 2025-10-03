@@ -29,7 +29,6 @@
 
   <ItemGroup>
     <None Include="http\app.http" />
-    <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>

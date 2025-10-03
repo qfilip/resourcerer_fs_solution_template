@@ -1,24 +1,26 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Resourcerer.DataAccess.Contexts;
 using Resourcerer.Identity.Abstractions;
 using Resourcerer.Identity.Models;
+using System.Diagnostics;
 
 namespace Resourcerer.DataAccess;
 
 public static class DependencyInjection
 {
-    public static void Register(WebApplicationBuilder builder)
+    public static void Register(IServiceCollection services, IWebHostEnvironment env)
     {
-        var dbPath = Path.Combine(builder.Environment.WebRootPath, "database.db3");
+        var dbPath = Path.Combine(env.WebRootPath, "database.db3");
         var prefix = "Datasource=";
 
-        builder.Services.AddDbContext<AppDbContext>(cfg =>
+        services.AddDbContext<AppDbContext>(cfg =>
             cfg.UseSqlite($"{prefix}{dbPath}"));
 
         // pass identity data from jwt to DBContext
-        builder.Services.AddTransient(x =>
+        services.AddTransient(x =>
         {
             var service = x.GetRequiredService<IAppIdentityService<AppIdentity>>();
             if (service == null)

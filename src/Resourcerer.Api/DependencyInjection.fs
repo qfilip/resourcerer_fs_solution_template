@@ -10,9 +10,9 @@ let register (builder: WebApplicationBuilder) =
             o.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin() |> ignore) |> ignore) |> ignore
 
     let authEnabled = Resourcerer.Identity.DependencyInjection.register builder
-    Resourcerer.DataAccess.DependencyInjection.Register builder
     Resourcerer.Messaging.DependencyInjection.register builder.Services builder.Configuration (Assembly.GetExecutingAssembly())
     Resourcerer.Logic.DependencyInjection.register builder.Services
+    Resourcerer.DataAccess.DependencyInjection.Register (builder.Services, builder.Environment)
 
     authEnabled
 
