@@ -6,8 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Types\AppError.fs" />
+    <Compile Include="Types.fs" />
     <Compile Include="Abstractions.fs" />
+    <Compile Include="Repositories.fs" />
     <Compile Include="V1\Foos\GetHandler.fs" />
     <Compile Include="V1\Foos\CreateHandler.fs" />
     <Compile Include="V1\Foos\UpdateHandler.fs" />
