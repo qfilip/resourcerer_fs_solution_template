@@ -16,6 +16,8 @@ This step may show an error in the console, but template should be installed and
 Check if template is installed: `dotnet new list`
 Run `dotnet new rsrcfs -o "MyPrefix"` to scaffold new solution.
 
+> DataAccess project must be built before other ones can pickup namespaces from it.
+
 ## Updates
 
 After template is updated, from root run:
