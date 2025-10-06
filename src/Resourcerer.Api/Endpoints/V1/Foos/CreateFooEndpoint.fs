@@ -12,7 +12,7 @@ type CreateFooEndpoint() =
             fun 
                 ([<FromBody>] request: CreateFooRequest)
                 ([<FromService>] handler: V1CreateHandler) ->
-                pipe request handler None
+                pipe request handler (Some (fun x -> Results.Ok (FooDto.FromRow x)))
         )
 
     interface IEndpoint with

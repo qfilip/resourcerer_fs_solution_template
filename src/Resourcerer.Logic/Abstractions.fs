@@ -3,7 +3,6 @@
 open System
 open Resourcerer.DataAccess.Abstractions
 open Resourcerer.Logic.Types
-open System.Linq.Expressions
 
 type IAsyncHandler<'a, 'b> =
     abstract member Handle: request: 'a -> Async<Result<'b, AppError>>

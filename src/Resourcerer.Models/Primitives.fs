@@ -3,7 +3,7 @@
 open System
 open Resourcerer.Models.Abstractions
 
-type Row<'a> = { Id: Guid; Data: 'a }
+type DbRow<'a> = { Id: Guid; Data: 'a }
 
 type ValidatedRequest<'a> = {
     Data: 'a

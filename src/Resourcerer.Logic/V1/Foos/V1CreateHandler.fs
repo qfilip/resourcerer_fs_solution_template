@@ -1,8 +1,8 @@
 ﻿namespace Resourcerer.Logic.V1.Foos
 
 open Resourcerer.Logic.Abstractions
+open Resourcerer.Models.Primitives
 open Resourcerer.Models.Domain.Foos
-open Resourcerer.Models.Dtos.V1
 open Resourcerer.DataAccess.Entities
 
 type IV1CreateRepo =
@@ -11,15 +11,15 @@ type IV1CreateRepo =
     abstract member Commit: unit -> Async<int>
 
 type V1CreateHandler(repo: IV1CreateRepo) =
-    interface IAsyncHandler<Foo, FooDto> with
+    interface IAsyncHandler<Foo, DbRow<Foo>> with
         member _.Handle (req) = async {
             let row =
                 req
-                |> mapRow
+                |> Foo.mapRow
                 |> repo.Add
             let! _ = repo.Commit()
 
-            return Ok (FooDto.FromRow row)
+            return Ok ({ Id = row.Id; Data = req })
         }
 
 type V1CreateRepo(rr: IRowRepository) =

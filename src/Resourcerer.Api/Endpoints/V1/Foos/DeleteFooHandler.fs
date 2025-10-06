@@ -13,7 +13,7 @@ type DeleteFooEndpoint() =
                 ([<FromRoute>] id: Guid)
                 ([<FromService>] processor: DeleteFooAsyncVoidProcessor) ->
                 let req: ValidatedRequest<Guid> = { Data = id }
-                pipeVoidMessage req processor $"Deletion request sent for {id}" None
+                pipeVoidMessage req processor $"Deletion request sent for {id}" (Some (fun x -> Results.Accepted x))
         )
 
     interface IEndpoint with

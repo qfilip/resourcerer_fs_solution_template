@@ -3,7 +3,6 @@
 open System
 open Resourcerer.Logic.Abstractions
 open Resourcerer.Models.Domain.Foos
-open Resourcerer.Models.Dtos.V1
 open Resourcerer.Models.Primitives
 open Resourcerer.Logic.Types
 open Resourcerer.DataAccess.Entities
@@ -14,7 +13,7 @@ type IV1UpdateRepo =
     abstract member Commit: unit -> Async<int>
 
 type V1UpdateHandler(repo: IV1UpdateRepo) =
-    interface IAsyncHandler<Row<Foo>, FooDto> with
+    interface IAsyncHandler<DbRow<Foo>, DbRow<Foo>> with
         member _.Handle (req) = async {
             let! data = repo.FindById req.Id
 
@@ -23,7 +22,7 @@ type V1UpdateHandler(repo: IV1UpdateRepo) =
             | Some row ->
                 row.Text <- req.Data.Text |> Min2String.unmap
                 let! _ = repo.Commit ()
-                return Ok (FooDto.FromRow row)
+                return Ok (req)
         }
 
 type V1UpdateRepo(rr: IRowRepository) =

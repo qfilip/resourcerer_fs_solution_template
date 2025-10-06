@@ -4,13 +4,14 @@ open System
 open Microsoft.AspNetCore.Http
 open Resourcerer.Logic.V1.Foos
 open Resourcerer.Api.Endpoints.Functions
+open Resourcerer.Models.Dtos.V1
 
 type GetFoosEndpoint() =
     let handler =
         Func<V1QueryHandler, Async<IResult>>(
             fun 
                 ([<FromService>] handler: V1QueryHandler) ->
-                pipeEmpty handler None
+                pipeEmpty handler (Some (fun xs -> Results.Ok (xs |> List.map FooDto.FromRow)))
         )
 
     interface IEndpoint with

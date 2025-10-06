@@ -12,7 +12,7 @@ type UpdateFooEndpoint() =
             fun 
                 ([<FromBody>] request: UpdateFooRequest)
                 ([<FromService>] processor: UpdateFooAsyncReplyProcessor) ->
-                pipeMessage request processor None
+                pipeMessage request processor (Some (fun _ -> Results.NoContent ()))
         )
 
     interface IEndpoint with
