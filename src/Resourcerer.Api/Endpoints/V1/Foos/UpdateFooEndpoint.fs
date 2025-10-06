@@ -3,8 +3,9 @@
 open System
 open Microsoft.AspNetCore.Http
 open Resourcerer.Models.Dtos.V1
-open Resourcerer.Api.Endpoints.Functions
 open Resourcerer.Api.Services.Messaging.V1
+open Resourcerer.Api.Endpoints.Types
+open Resourcerer.Api.Services.Functions
 
 type UpdateFooEndpoint() =
     let handler =
@@ -12,7 +13,7 @@ type UpdateFooEndpoint() =
             fun 
                 ([<FromBody>] request: UpdateFooRequest)
                 ([<FromService>] processor: UpdateRowAsyncReplyProcessor) ->
-                pipeMessage request processor (Some (fun _ -> Results.NoContent ()))
+                pipeMessage request processor
         )
 
     interface IEndpoint with

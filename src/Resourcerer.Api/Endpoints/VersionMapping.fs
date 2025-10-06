@@ -4,7 +4,7 @@ open System
 open System.Reflection
 open Microsoft.AspNetCore.Builder
 open Resourcerer.Utilities.Reflection
-open Functions
+open Resourcerer.Api.Endpoints.Types
 
 let private printPretty (path: string) (method: HttpMethod) =
     let space = 7 - method.ToString().Length

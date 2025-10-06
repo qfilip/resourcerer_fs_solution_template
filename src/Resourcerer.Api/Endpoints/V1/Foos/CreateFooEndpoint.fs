@@ -4,7 +4,8 @@ open System
 open Microsoft.AspNetCore.Http
 open Resourcerer.Models.Dtos.V1
 open Resourcerer.Logic.V1.Foos
-open Resourcerer.Api.Endpoints.Functions
+open Resourcerer.Api.Services.Functions
+open Resourcerer.Api.Endpoints.Types
 
 type CreateFooEndpoint() =
     let handler =

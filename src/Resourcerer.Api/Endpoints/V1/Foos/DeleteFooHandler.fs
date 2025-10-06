@@ -2,9 +2,10 @@
 
 open System
 open Microsoft.AspNetCore.Http
-open Resourcerer.Api.Endpoints.Functions
 open Resourcerer.Api.Services.Messaging.V1
 open Resourcerer.Models.Primitives
+open Resourcerer.Api.Services.Functions
+open Resourcerer.Api.Endpoints.Types
 
 type DeleteFooEndpoint() =
     let handler =

@@ -3,8 +3,9 @@
 open System
 open Microsoft.AspNetCore.Http
 open Resourcerer.Logic.V1.Foos
-open Resourcerer.Api.Endpoints.Functions
 open Resourcerer.Models.Dtos.V1
+open Resourcerer.Api.Endpoints.Types
+open Resourcerer.Api.Services.Functions
 
 type GetFoosEndpoint() =
     let handler =

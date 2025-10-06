@@ -8,13 +8,13 @@ open Resourcerer.Logic.Abstractions
 open Resourcerer.Models.Primitives
 open Resourcerer.Models.Domain.Foos
 open Resourcerer.Logic.V1.Foos
-open Resourcerer.Logic.Types
+open Microsoft.AspNetCore.Http
+open Resourcerer.Api.Services.Functions
 
 type UpdateRowAsyncReplyProcessor(scopeFactory: IServiceScopeFactory) =
     let processor = AsyncReplyProcessor()
-    let mapResult = function Ok _ -> Ok () | Error es -> Error es
     
-    interface IAsyncReplyProcessor<UpdateRowMessage, Result<unit, AppError>> with
+    interface IAsyncReplyProcessor<UpdateRowMessage, IResult> with
         member _.Post (message: UpdateRowMessage) = async {
             let scope = scopeFactory.CreateScope()
             match message with
@@ -24,7 +24,7 @@ type UpdateRowAsyncReplyProcessor(scopeFactory: IServiceScopeFactory) =
                     :> IAsyncHandler<DbRow<Foo>, DbRow<Foo>>
                     
                 let! result = processor.Post row handler.Handle
-                return result |> mapResult
+                return mapHttpResponse result None
         }
     
     
