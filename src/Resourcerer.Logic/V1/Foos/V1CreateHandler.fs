@@ -4,6 +4,7 @@ open Resourcerer.Logic.Abstractions
 open Resourcerer.Models.Primitives
 open Resourcerer.Models.Domain.Foos
 open Resourcerer.DataAccess.Entities
+open Resourcerer.Logic.Types
 
 type IV1CreateRepo =
     inherit IRepository
@@ -17,9 +18,12 @@ type V1CreateHandler(repo: IV1CreateRepo) =
                 req
                 |> Foo.mapRow
                 |> repo.Add
-            let! _ = repo.Commit()
 
-            return Ok ({ Id = row.Id; Data = req })
+            try
+                let! _ = repo.Commit()
+                return Ok ({ Id = row.Id; Data = req })
+            with
+            | ex -> return Error (InternalError ex)
         }
 
 type V1CreateRepo(rr: IRowRepository) =

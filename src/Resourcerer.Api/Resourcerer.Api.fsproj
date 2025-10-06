@@ -6,8 +6,8 @@
 
   <ItemGroup>
     <Compile Include="Services\Functions.fs" />
-    <Compile Include="Services\Messaging\V1\DeleteFooAsyncVoidProcessor.fs" />
-    <Compile Include="Services\Messaging\V1\UpdateFooAsyncReplyProcessor.fs" />
+    <Compile Include="Services\Messaging\V1\DeleteRowAsyncVoidProcessor.fs" />
+    <Compile Include="Services\Messaging\V1\UpdateRowAsyncReplyProcessor.fs" />
     <Compile Include="Endpoints\Types.fs" />
     <Compile Include="Endpoints\V1\Foos\GetFoosEndpoint.fs" />
     <Compile Include="Endpoints\V1\Foos\UpdateFooEndpoint.fs" />

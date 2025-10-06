@@ -15,14 +15,17 @@ type IV1UpdateRepo =
 type V1UpdateHandler(repo: IV1UpdateRepo) =
     interface IAsyncHandler<DbRow<Foo>, DbRow<Foo>> with
         member _.Handle (req) = async {
-            let! data = repo.FindById req.Id
+            try
+                let! data = repo.FindById req.Id
 
-            match data with
-            | None -> return Error (AppError.NotFound $"{req.Id}")
-            | Some row ->
-                row.Text <- req.Data.Text |> Min2String.unmap
-                let! _ = repo.Commit ()
-                return Ok (req)
+                match data with
+                | None -> return Error (AppError.NotFound $"{req.Id}")
+                | Some row ->
+                    row.Text <- req.Data.Text |> Min2String.unmap
+                    let! _ = repo.Commit ()
+                    return Ok (req)
+            with
+            | ex -> return Error (InternalError ex)
         }
 
 type V1UpdateRepo(rr: IRowRepository) =

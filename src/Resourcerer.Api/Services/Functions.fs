@@ -17,6 +17,8 @@ let mapHttpResponse (xr: Result<'a, AppError>) (okMapper: ('a -> IResult) option
         | AppError.Validation e -> Results.BadRequest e
         | AppError.NotFound e -> Results.NotFound e
         | AppError.Rejected e -> Results.Conflict e
+        | AppError.DataCorruption _ -> Results.InternalServerError "Data corrupted"
+        | AppError.InternalError _ -> Results.InternalServerError "Some service unavailable"
 
 let pipe<'dto, 'req, 'res, 'handler when 'handler :> IAsyncHandler<'req, 'res>>
     (request: IRequest<'dto, 'req>)

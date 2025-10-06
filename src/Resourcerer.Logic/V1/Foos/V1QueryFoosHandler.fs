@@ -7,6 +7,7 @@ open Microsoft.EntityFrameworkCore
 open Resourcerer.Models.Primitives
 open Resourcerer.Models.Domain.Foos
 open Resourcerer.Utilities.Common.ResultExt
+open Resourcerer.Logic.Types
 
 type IV1QueryRepo =
     inherit IRepository
@@ -15,15 +16,18 @@ type IV1QueryRepo =
 type V1QueryHandler(repo: IV1QueryRepo) =
     interface IAsyncHandler<unit, DbRow<Foo> list> with
         member _.Handle (_) = async {
-            let! rows = repo.Query ()
-            let results =
-                rows
-                |> Array.map (fun x -> Foo.mapDbRow x)
-                |> List.ofArray
-                |> verifyList
+            try
+                let! rows = repo.Query ()
+                let results =
+                    rows
+                    |> Array.map (fun x -> Foo.mapDbRow x)
+                    |> List.ofArray
+                    |> verifyList
+                    |> AppError.toDataCorrupted
             
-            let data = results |> Result.defaultWith (fun _ -> failwith "Data corrupted")
-            return Ok (data)
+                return results
+            with
+            | ex -> return Error (InternalError ex)
         }
 
 type V1QueryRepo(db: AppDbContext) =

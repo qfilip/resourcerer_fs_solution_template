@@ -10,10 +10,10 @@ open Resourcerer.Models.Domain.Foos
 open Resourcerer.Logic.V1.Foos
 open Microsoft.AspNetCore.Http
 open Resourcerer.Api.Services.Functions
+open Resourcerer.Models.Dtos.V1
 
 type UpdateRowAsyncReplyProcessor(scopeFactory: IServiceScopeFactory) =
     let processor = AsyncReplyProcessor()
-    
     interface IAsyncReplyProcessor<UpdateRowMessage, IResult> with
         member _.Post (message: UpdateRowMessage) = async {
             let scope = scopeFactory.CreateScope()
@@ -22,9 +22,8 @@ type UpdateRowAsyncReplyProcessor(scopeFactory: IServiceScopeFactory) =
                 let handler = 
                     scope.ServiceProvider.GetRequiredService<V1UpdateHandler>()
                     :> IAsyncHandler<DbRow<Foo>, DbRow<Foo>>
-                    
                 let! result = processor.Post row handler.Handle
-                return mapHttpResponse result None
+                return mapHttpResponse result (Some (fun x -> Results.Ok (FooDto.FromRow x)))
         }
     
     

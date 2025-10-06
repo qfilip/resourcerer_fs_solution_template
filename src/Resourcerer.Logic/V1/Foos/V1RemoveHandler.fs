@@ -12,12 +12,15 @@ type IV1RemoveRepo =
 type V1RemoveHandler(repo: IV1RemoveRepo) =
     interface IAsyncVoidHandler<Guid> with
         member _.Handle (req) = async {
-            let! data = repo.FindById (req)
-            match data with
-            | None -> return ()
-            | Some row ->
-                let! _ = repo.Remove row
-                return ()
+            try
+                let! data = repo.FindById (req)
+                match data with
+                | None -> return ()
+                | Some row ->
+                    let! _ = repo.Remove row
+                    return ()
+            with
+            | ex -> return ()// log error
         }
 
 type V1RemoveRepo(rr: IRowRepository) =
