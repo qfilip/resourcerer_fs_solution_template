@@ -7,7 +7,7 @@ open Resourcerer.Messaging.MailboxProcessors.Abstractions
 open Resourcerer.Logic.Abstractions
 open System
 
-type DeleteFooAsyncVoidProcessor(scopeFactory: IServiceScopeFactory) =
+type DeleteRowAsyncVoidProcessor(scopeFactory: IServiceScopeFactory) =
     let processor = AsyncVoidProcessor()
     
     interface IAsyncVoidProcessor<Guid> with

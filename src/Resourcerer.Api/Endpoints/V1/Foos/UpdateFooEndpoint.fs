@@ -8,10 +8,10 @@ open Resourcerer.Api.Services.Messaging.V1
 
 type UpdateFooEndpoint() =
     let handler =
-        Func<UpdateFooRequest, UpdateFooAsyncReplyProcessor, Async<IResult>>(
+        Func<UpdateFooRequest, UpdateRowAsyncReplyProcessor, Async<IResult>>(
             fun 
                 ([<FromBody>] request: UpdateFooRequest)
-                ([<FromService>] processor: UpdateFooAsyncReplyProcessor) ->
+                ([<FromService>] processor: UpdateRowAsyncReplyProcessor) ->
                 pipeMessage request processor (Some (fun _ -> Results.NoContent ()))
         )
 

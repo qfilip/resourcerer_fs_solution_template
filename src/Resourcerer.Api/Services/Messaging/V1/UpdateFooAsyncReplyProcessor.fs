@@ -10,7 +10,7 @@ open Resourcerer.Models.Domain.Foos
 open Resourcerer.Logic.V1.Foos
 open Resourcerer.Logic.Types
 
-type UpdateFooAsyncReplyProcessor(scopeFactory: IServiceScopeFactory) =
+type UpdateRowAsyncReplyProcessor(scopeFactory: IServiceScopeFactory) =
     let processor = AsyncReplyProcessor()
     let mapResult = function Ok _ -> Ok () | Error es -> Error es
     

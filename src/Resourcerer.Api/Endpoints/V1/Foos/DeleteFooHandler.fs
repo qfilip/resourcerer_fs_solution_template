@@ -8,10 +8,10 @@ open Resourcerer.Models.Primitives
 
 type DeleteFooEndpoint() =
     let handler =
-        Func<Guid, DeleteFooAsyncVoidProcessor, Async<IResult>>(
+        Func<Guid, DeleteRowAsyncVoidProcessor, Async<IResult>>(
             fun 
                 ([<FromRoute>] id: Guid)
-                ([<FromService>] processor: DeleteFooAsyncVoidProcessor) ->
+                ([<FromService>] processor: DeleteRowAsyncVoidProcessor) ->
                 let req: ValidatedRequest<Guid> = { Data = id }
                 pipeVoidMessage req processor $"Deletion request sent for {id}" (Some (fun x -> Results.Accepted x))
         )
