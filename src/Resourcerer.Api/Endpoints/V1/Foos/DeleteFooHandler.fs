@@ -3,9 +3,10 @@
 open System
 open Microsoft.AspNetCore.Http
 open Resourcerer.Api.Services.Messaging.V1
-open Resourcerer.Models.Primitives
 open Resourcerer.Api.Services.Functions
 open Resourcerer.Api.Endpoints.Types
+open Resourcerer.Models.Messages
+open Resourcerer.Models.Primitives
 
 type DeleteFooEndpoint() =
     let handler =
@@ -13,7 +14,7 @@ type DeleteFooEndpoint() =
             fun 
                 ([<FromRoute>] id: Guid)
                 ([<FromService>] processor: DeleteRowAsyncVoidProcessor) ->
-                let req: ValidatedRequest<Guid> = { Data = id }
+                let req: ValidatedRequest<DeleteRowMessage> = { Data = DeleteRowMessage.Foo id }
                 pipeVoidMessage req processor $"Deletion request sent for {id}" (Some (fun x -> Results.Accepted x))
         )
 
