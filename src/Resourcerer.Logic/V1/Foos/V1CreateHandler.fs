@@ -2,7 +2,7 @@
 
 open Resourcerer.Logic.Abstractions
 open Resourcerer.Models.Primitives
-open Resourcerer.Models.Domain.Foos
+open Resourcerer.Models.Domain
 open Resourcerer.DataAccess.Entities
 open Resourcerer.Logic.Types
 

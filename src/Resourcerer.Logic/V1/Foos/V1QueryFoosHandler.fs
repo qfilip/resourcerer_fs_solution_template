@@ -5,7 +5,7 @@ open Resourcerer.DataAccess.Entities
 open Resourcerer.DataAccess.Contexts
 open Microsoft.EntityFrameworkCore
 open Resourcerer.Models.Primitives
-open Resourcerer.Models.Domain.Foos
+open Resourcerer.Models.Domain
 open Resourcerer.Utilities.Common.ResultExt
 open Resourcerer.Logic.Types
 

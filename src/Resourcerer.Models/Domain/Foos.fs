@@ -1,4 +1,4 @@
-﻿module Resourcerer.Models.Domain.Foos
+﻿namespace Resourcerer.Models.Domain
 
 open Resourcerer.Models.Primitives
 open Resourcerer.DataAccess.Entities

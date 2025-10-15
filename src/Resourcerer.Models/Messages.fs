@@ -2,7 +2,7 @@
 
 open System
 open Resourcerer.Models.Primitives
-open Resourcerer.Models.Domain.Foos
+open Resourcerer.Models.Domain
 
 type UpdateRowMessage =
 | FooUpdate of DbRow<Foo>

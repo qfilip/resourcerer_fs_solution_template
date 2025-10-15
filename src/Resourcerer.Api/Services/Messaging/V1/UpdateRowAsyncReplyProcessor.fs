@@ -6,7 +6,7 @@ open Resourcerer.Messaging.MailboxProcessors.Abstractions
 open Resourcerer.Models.Messages
 open Resourcerer.Logic.Abstractions
 open Resourcerer.Models.Primitives
-open Resourcerer.Models.Domain.Foos
+open Resourcerer.Models.Domain
 open Resourcerer.Logic.V1.Foos
 open Microsoft.AspNetCore.Http
 open Resourcerer.Api.Services.Functions
