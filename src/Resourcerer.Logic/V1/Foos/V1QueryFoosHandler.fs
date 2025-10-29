@@ -21,8 +21,7 @@ type V1QueryHandler(repo: IV1QueryRepo) =
                 let results =
                     rows
                     |> Array.map (fun x -> Foo.mapDbRow x)
-                    |> List.ofArray
-                    |> verifyList
+                    |> verifyArray
                     |> AppError.toDataCorrupted
             
                 return results
